@@ -28,7 +28,7 @@ def fetch_and_save_nav(scheme_code, filename):
         df["scheme_name"] = meta.get("scheme_name")
         df["fund_house"]  = meta.get("fund_house")
 
-        output_path = f"data/raw{filename}.csv"
+        output_path = f"data/raw/{filename}.csv"
         df.to_csv(output_path, index=False)
         print(f"Successfully saved to {output_path}\n")
 
@@ -50,4 +50,3 @@ if __name__ == "__main__":
 
     for code, name in schemes.items():
         fetch_and_save_nav(code, f"key_scheme_{name}")
-        
