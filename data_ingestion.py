@@ -11,11 +11,17 @@ def ingest_and_explore_raw_csv():
         return
     
     for file in csv_files[:10]: # LIMITS TO FIRST 10 FOR INSPECTION
+        print("=" * 50)
         print(f"\n---File:{file}---")
         df = pd.read_csv(file)
-        print(f"Shape: {df.shape}")
-        print("\nData types:")
+        print(f"Shape: {df.shape[0]} rows and {df.shape[1]} columns")
+        print("-" * 50)
+        print("\nData Types:")
+        print(df.dtypes)
+        print("-" * 50)
+        print("\nSample Data:")
         print(df.head(3))
+        
 
         # QUICK ANOMALY CHECK
         missing = df.isnull().sum().sum()
@@ -24,7 +30,7 @@ def ingest_and_explore_raw_csv():
             print(f"Anomalies detected:{missing} missing values, {dupes} duplicate rows.")
 
 def explore_fund_master(fund_master_path):
-    print("\n == Exploring Find Master ===")
+    print("\n == Exploring Fund Master ===")
     if not os.path.exists(fund_master_path):
         print(f"Fund Master file not found at {fund_master_path}")
         return None
